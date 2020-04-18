@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <title>VueJS Examples - Basic Setup</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col">
+                    <h1>Basic Setup</h1>
+                    <input type="text" id="message" name="message" v-model="message" />
+                    <span>Ok the message is {{ message }}</span>
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                message: "This is an initial input"
+            }
+        });
+
+
+    </script>
+
+
+
+</body>
+
+</html>
