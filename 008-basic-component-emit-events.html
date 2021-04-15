@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <title>VueJS Examples - Component Events</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col">
+
+                    <input type="button" value="Open Modal" @click="showModal=true" />
+
+
+                    <modal v-if="showModal == true" @close="showModal=false">
+                        <p>We can use this modal to craete a popup login.</p>
+                    </modal>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+
+        Vue.component('modal', {
+
+            template: `
+            <div class="modal" tabindex="-1" style="display:block;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="$emit('close')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <slot></slot>
+                        </div>
+                       
+
+                    </div>
+                </div>
+            </div>
+            `
+        })
+
+        new Vue({
+
+            el: '#app',
+
+            data: {
+
+                showModal: false
+
+            },
+
+        });
+
+    </script>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+
+</body>
+
+</html>

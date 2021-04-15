@@ -4,26 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <title>VueJS Examples - Attribute Binding</title>
-
-    <style>
     
-    .on {
-        background-color: green;
-    }
-
-    .off {
-        background-color: red;
-    }
-
-    .box {
-        width: 200px;
-        height:200px;
-    }
-
-    </style>
-
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    
+    <title>VueJS Examples - Blank Template</title>
 
 </head>
 
@@ -35,12 +19,9 @@
             <div class="row">
                 <div class="col">
 
-                    <h1>Attribute Binding</h1>
+                    <h1>Simple and Practical Alert Component</h1>
 
-                    <button name="btnSubmit" @click="toggleStatus">Click Me</button>
-
-                    <div v-bind:class="[status ? 'on' : 'off', 'box']"></div>
-
+                    <alert title="Warning!" description="The section below requires proper permissions."></alert>
 
                 </div>
             </div>
@@ -55,18 +36,36 @@
     <script type="text/javascript" src="js/vue.js"></script>
     <script type="text/javascript">
 
+
+        Vue.component('alert', {
+
+            props: ['title', 'description'],
+
+            data() {
+
+                return {
+
+                    isVisible : true,
+
+                }
+            },
+
+            template: `
+            <div class="alert alert-warning" v-show="isVisible">
+                <strong>{{ title }}</strong> {{ description }}
+                <button type="button" class="close" @click="isVisible = false">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>`
+
+        })
+
         var app = new Vue({
             el: '#app',
-            
             data: {
-                status : false
             },
 
             methods: {
-
-                toggleStatus() {
-                    this.status = !this.status
-                }
             }
         });
 

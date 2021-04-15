@@ -5,26 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <title>VueJS Examples - Attribute Binding</title>
-
-    <style>
-    
-    .on {
-        background-color: green;
-    }
-
-    .off {
-        background-color: red;
-    }
-
-    .box {
-        width: 200px;
-        height:200px;
-    }
-
-    </style>
-
-
+    <title>VueJS Examples - Component within Component</title>
 </head>
 
 <body>
@@ -35,11 +16,9 @@
             <div class="row">
                 <div class="col">
 
-                    <h1>Attribute Binding</h1>
+                    <h1>All Tasks</h1>
 
-                    <button name="btnSubmit" @click="toggleStatus">Click Me</button>
-
-                    <div v-bind:class="[status ? 'on' : 'off', 'box']"></div>
+                    <task-list></task-list>
 
 
                 </div>
@@ -55,18 +34,38 @@
     <script type="text/javascript" src="js/vue.js"></script>
     <script type="text/javascript">
 
+        Vue.component('task-list', {
+
+            template : '<div><li v-for="task in tasks">{{ task.description }}</li></div>', 
+
+            data() {
+                
+                return {
+
+                    tasks: [
+                        {'description' : 'Learn VueJS Basics', 'completed' : true},
+                        {'description' : 'Learn VueJS Component', 'completed' : false},
+                        {'description' : 'Learn VueJS 3 Updates', 'completed' : false}
+                    ]
+
+                }
+            }
+
+        });
+
+
+        Vue.component('task', {
+
+            template : '<li><slot></slot></l>', 
+
+        });
+
         var app = new Vue({
             el: '#app',
-            
             data: {
-                status : false
             },
 
             methods: {
-
-                toggleStatus() {
-                    this.status = !this.status
-                }
             }
         });
 
